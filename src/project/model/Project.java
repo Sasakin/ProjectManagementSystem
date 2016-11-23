@@ -2,14 +2,14 @@ package project.model;
 
 public class Project {
     private int id;
-    private String progectTitle;
+    private String projectTitle;
     private int clientId;
     private int companyId;
     private int cost;
 
-    public Project(int id, String progectTitle, int clientId, int companyId, int cost) {
+    public Project(int id, String projectTitle, int clientId, int companyId, int cost) {
         this.id = id;
-        this.progectTitle = progectTitle;
+        this.projectTitle = projectTitle;
         this.clientId = clientId;
         this.companyId = companyId;
         this.cost = cost;
@@ -23,12 +23,12 @@ public class Project {
         this.id = id;
     }
 
-    public String getProgectTitle() {
-        return progectTitle;
+    public String getprojectTitle() {
+        return projectTitle;
     }
 
-    public void setProgectTitle(String progectTitle) {
-        this.progectTitle = progectTitle;
+    public void setprojectTitle(String projectTitle) {
+        this.projectTitle = projectTitle;
     }
 
     public int getClientId() {
@@ -59,7 +59,7 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "id=" + id +
-                ", progectTitle='" + progectTitle + '\'' +
+                ", projectTitle='" + projectTitle + '\'' +
                 ", clientId=" + clientId +
                 ", companyId=" + companyId +
                 ", cost=" + cost +
