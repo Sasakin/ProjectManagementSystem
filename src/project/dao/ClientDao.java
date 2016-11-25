@@ -15,15 +15,15 @@ public class ClientDao {
 
     public void add(Client client) {
         String sql = "INSERT INTO DEVELOPER_MANAGER.clients" +
-                " (client_id, client_name) VALUES ('"
-        + client.getId() + "', '" + client.getName() + "');";
+                " (client_id, client_name) VALUES ("
+        + client.getId() + ", " + client.getName() + ");";
       sObj.executUpdate(sql);
     }
 
 
     public void update(Client client) {
-        String sql = "UPDATE DEVELOPER_MANAGER.clients SET client_name='"
-        + client.getName()+"' WHERE client_id = "+client.getId()+";";
+        String sql = "UPDATE DEVELOPER_MANAGER.clients SET client_name="
+        + client.getName()+" WHERE client_id = "+client.getId()+";";
         sObj.executUpdate(sql);
     }
 

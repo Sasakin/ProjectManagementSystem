@@ -19,9 +19,9 @@ public class ProjectDeveloperDao implements AbstructDao {
             return;
         ProjectDeveloper projectDeveloper = (ProjectDeveloper) object;
         String sql = "INSERT INTO DEVELOPER_MANAGER.project_developers" +
-                " (id, project_id, developer_id) VALUES ('"
-                + projectDeveloper.getId() + "', '" + projectDeveloper.getProjectId() + "', '"
-                 + projectDeveloper.getDeveloperId() + "'"  + ");";
+                " (id, project_id, developer_id) VALUES ("
+                + projectDeveloper.getId() + ", " + projectDeveloper.getProjectId() + ", "
+                 + projectDeveloper.getDeveloperId() + ""  + ");";
         sObj.executUpdate(sql);
     }
 
@@ -30,9 +30,9 @@ public class ProjectDeveloperDao implements AbstructDao {
         if(!(object instanceof ProjectDeveloper))
             return;
         ProjectDeveloper projectDeveloper = (ProjectDeveloper) object;
-        String sql = "UPDATE DEVELOPER_MANAGER.project_developers SET project_id='"
-                + projectDeveloper.getProjectId()+"', developer_id='"+ projectDeveloper.getDeveloperId()
-                +"' WHERE id = "+projectDeveloper.getId()+";";
+        String sql = "UPDATE DEVELOPER_MANAGER.project_developers SET project_id="
+                + projectDeveloper.getProjectId()+", developer_id="+ projectDeveloper.getDeveloperId()
+                +" WHERE id = "+projectDeveloper.getId()+";";
         sObj.executUpdate(sql);
     }
 
@@ -62,14 +62,14 @@ public class ProjectDeveloperDao implements AbstructDao {
         String sql = "SELECT * FROM DEVELOPER_MANAGER.project_developers;";
         sObj.executQuery(sql);
         ResultSet rs = SessionObject.getResultSet();
-        List<Object> projectDevelopertList = new ArrayList<Object>();
+        List<Object> projectDeveloperList = new ArrayList<Object>();
         try {
             while (rs.next()) {
-                projectDevelopertList.add((Object)new ProjectDeveloper(rs.getInt("id"),rs.getInt("project_id"),rs.getInt("developer_id")));
+                projectDeveloperList.add((Object)new ProjectDeveloper(rs.getInt("id"),rs.getInt("project_id"),rs.getInt("developer_id")));
             }
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        return  projectDevelopertList;
+        return  projectDeveloperList;
     }
 }

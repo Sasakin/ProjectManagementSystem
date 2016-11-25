@@ -21,7 +21,7 @@ public class CompanyDao implements AbstructDao {
         Company company = (Company) object;
         String sql = "INSERT INTO DEVELOPER_MANAGER.company" +
                 " (company_id, company_name) VALUES ("
-                + company.getId() + "', " + company.getName()  + ");";
+                + company.getId() + ", " + company.getName()  + ");";
         sObj.executUpdate(sql);
     }
 
