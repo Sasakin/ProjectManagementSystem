@@ -20,7 +20,7 @@ public class DeveloperDao implements AbstructDao {
         Developer developer = (Developer) object;
         String sql = "INSERT INTO DEVELOPER_MANAGER.developers" +
                 " (developer_id, name, salary) VALUES ("
-                + developer.getId() + ", " + developer.getName()+", " +developer.getSalary() + ");";
+                + developer.getId() + ", '" + developer.getName()+"', " +developer.getSalary() + ");";
         sObj.executUpdate(sql);
     }
 
@@ -29,8 +29,8 @@ public class DeveloperDao implements AbstructDao {
         if(!(object instanceof Developer))
             return;
         Developer developer = (Developer) object;
-        String sql = "UPDATE DEVELOPER_MANAGER.developers SET name="
-                +  developer.getName() +", salary="+developer.getSalary()
+        String sql = "UPDATE DEVELOPER_MANAGER.developers SET name='"
+                +  developer.getName() +"', salary="+developer.getSalary()
                 +" WHERE id = "+developer.getId()+";";
         sObj.executUpdate(sql);
     }
@@ -50,6 +50,7 @@ public class DeveloperDao implements AbstructDao {
             while (rs.next()) {
                 return new Developer(rs.getString("name"),rs.getInt("developer_id"),rs.getString("salary"));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,6 +67,7 @@ public class DeveloperDao implements AbstructDao {
             while (rs.next()) {
                 developerList.add(new Developer(rs.getString("name"),rs.getInt("developer_id"),rs.getString("salary")));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }

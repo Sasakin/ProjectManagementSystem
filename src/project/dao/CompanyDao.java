@@ -21,7 +21,7 @@ public class CompanyDao implements AbstructDao {
         Company company = (Company) object;
         String sql = "INSERT INTO DEVELOPER_MANAGER.company" +
                 " (company_id, company_name) VALUES ("
-                + company.getId() + ", " + company.getName()  + ");";
+                + company.getId() + ", '" + company.getName()  + "');";
         sObj.executUpdate(sql);
     }
 
@@ -30,9 +30,9 @@ public class CompanyDao implements AbstructDao {
         if(!(object instanceof Company))
             return;
         Company company = (Company) object;
-        String sql = "UPDATE DEVELOPER_MANAGER.company SET company_name="
+        String sql = "UPDATE DEVELOPER_MANAGER.company SET company_name='"
                 +  company.getName()
-                +" WHERE id = "+company.getId()+";";
+                +"' WHERE id = "+company.getId()+";";
         sObj.executUpdate(sql);
     }
 
@@ -51,6 +51,7 @@ public class CompanyDao implements AbstructDao {
             while (rs.next()) {
                 return new Company(rs.getInt("company_id"),rs.getString("company_name"));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,6 +68,7 @@ public class CompanyDao implements AbstructDao {
             while (rs.next()) {
                 companyList.add(new Company(rs.getInt("company_id"),rs.getString("company_name")));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }

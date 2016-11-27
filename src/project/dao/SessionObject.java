@@ -57,19 +57,6 @@ public class SessionObject {
         return rs;
     }
 
-    public List<String> getStringsByField(String field) {
-        queryResult.clear();
-        if(rs!=null) {
-            try {
-                while (rs.next()) {
-                    queryResult.add(rs.getString(field));
-                }
-            } catch (SQLException sqlEx) {
-                sqlEx.printStackTrace();
-            }
-        }
-        return  queryResult;
-    }
 
     @Override
     protected void finalize() throws Throwable {

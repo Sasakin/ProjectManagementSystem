@@ -14,14 +14,12 @@ public class SpecialityDeveloperDao implements AbstructDao {
         if(!(object instanceof SpecialtyDeveloper))
             return;
         SpecialtyDeveloper specialtyDeveloper= (SpecialtyDeveloper) object;
-        String sql = "INSERT INTO DEVELOPER_MANAGER.specialty_developers" +
-                " (keyid, specialty_id, developer_id) VALUES (" + specialtyDeveloper.getId() + ", "
+        String sql = "INSERT INTO DEVELOPER_MANAGER.speciality_developers" +
+                " (keyid, speciality_id, developer_id) VALUES (" + specialtyDeveloper.getId() + ", "
                 + specialtyDeveloper.getSpecialtyId() + ", " + specialtyDeveloper.getDeveloperId() + ""  + ");";
         sObj.executUpdate(sql);
     }
-    /*`keyid`
-    `speciality_id
-    `developer_id` */
+
 
 
 
@@ -48,8 +46,9 @@ public class SpecialityDeveloperDao implements AbstructDao {
         ResultSet rs = SessionObject.getResultSet();
         try {
             while (rs.next()) {
-                return new SpecialtyDeveloper(rs.getInt("keyid"), rs.getInt("specialty_id"), rs.getInt("developer_id"));
+                return new SpecialtyDeveloper(rs.getInt("keyid"), rs.getInt("speciality_id"), rs.getInt("developer_id"));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,8 +63,9 @@ public class SpecialityDeveloperDao implements AbstructDao {
         List<Object> specialityDevelopersList = new ArrayList<Object>();
         try {
             while (rs.next()) {
-                specialityDevelopersList.add((Object)new SpecialtyDeveloper(rs.getInt("keyid"), rs.getInt("specialty_id"), rs.getInt("developer_id")));
+                specialityDevelopersList.add((Object)new SpecialtyDeveloper(rs.getInt("keyid"), rs.getInt("speciality_id"), rs.getInt("developer_id")));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }

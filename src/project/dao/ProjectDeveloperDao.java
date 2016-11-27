@@ -19,7 +19,7 @@ public class ProjectDeveloperDao implements AbstructDao {
             return;
         ProjectDeveloper projectDeveloper = (ProjectDeveloper) object;
         String sql = "INSERT INTO DEVELOPER_MANAGER.project_developers" +
-                " (id, project_id, developer_id) VALUES ("
+                " (keyid, project_id, developer_id) VALUES ("
                 + projectDeveloper.getId() + ", " + projectDeveloper.getProjectId() + ", "
                  + projectDeveloper.getDeveloperId() + ""  + ");";
         sObj.executUpdate(sql);
@@ -32,25 +32,26 @@ public class ProjectDeveloperDao implements AbstructDao {
         ProjectDeveloper projectDeveloper = (ProjectDeveloper) object;
         String sql = "UPDATE DEVELOPER_MANAGER.project_developers SET project_id="
                 + projectDeveloper.getProjectId()+", developer_id="+ projectDeveloper.getDeveloperId()
-                +" WHERE id = "+projectDeveloper.getId()+";";
+                +" WHERE keyid = "+projectDeveloper.getId()+";";
         sObj.executUpdate(sql);
     }
 
 
     public void remove(int id) {
-        String sql = "DELETE FROM DEVELOPER_MANAGER.project_developers WHERE id="+id+";";
+        String sql = "DELETE FROM DEVELOPER_MANAGER.project_developers WHERE keyid="+id+";";
         sObj.executUpdate(sql);
     }
 
 
     public ProjectDeveloper getById(int id) {
-        String sql = "SELECT * FROM DEVELOPER_MANAGER.project_developers WHERE id="+id+";";
+        String sql = "SELECT * FROM DEVELOPER_MANAGER.project_developers WHERE keyid="+id+";";
         sObj.executQuery(sql);
         ResultSet rs = SessionObject.getResultSet();
         try {
             while (rs.next()) {
-                return new ProjectDeveloper(rs.getInt("id"),rs.getInt("project_id"),rs.getInt("developer_id"));
+                return new ProjectDeveloper(rs.getInt("keyid"),rs.getInt("project_id"),rs.getInt("developer_id"));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,8 +66,9 @@ public class ProjectDeveloperDao implements AbstructDao {
         List<Object> projectDeveloperList = new ArrayList<Object>();
         try {
             while (rs.next()) {
-                projectDeveloperList.add((Object)new ProjectDeveloper(rs.getInt("id"),rs.getInt("project_id"),rs.getInt("developer_id")));
+                projectDeveloperList.add(new ProjectDeveloper(rs.getInt("keyid"),rs.getInt("project_id"),rs.getInt("developer_id")));
             }
+            rs.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
